@@ -9,9 +9,9 @@ const connectToDB = async () => {
         });
         console.log('DB Connected');
     } catch (error) {
-console.error("DB COnnection failed", error);
-process.exit(1);
+        console.error("DB COnnection failed", error);
+        process.exit(1);
     }
 };
 
-module.exports=connectToDB;
+module.exports = connectToDB;
