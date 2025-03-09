@@ -24,6 +24,28 @@ router.post("/register", async (req,res)=>{
     res.status(201).json({message:" Registered Sucessfully"});
 
 
-})
+});
+
+// Creating a route for login
+
+router.post('/login', async (req,res)=>{
+
+    const {email,password}=req.body;
+
+    const user= await User.findOne({email});
+
+    if(!user) return res.status(400).json({message:"user not found"});
+
+    const isMatch= await bcrypt.compare(password,user.password);
+
+    if(!isMatch) return res.status(400).json({message:"Invalid Credentials"});
+
+    const token=jwt.sign({id:user._id}, process.env.JWT_SECRETE, {expiresIn:'1hr'});
+
+    // res.json(token);
+    res.json({message:"Login Sucessfull"});
+
+
+});
 
 module.exports=router;
