@@ -10,6 +10,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+//Routes
+
+const userRoutes=require('./Routes/userRoutes');
+app.use("/api/users",userRoutes);
+
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
