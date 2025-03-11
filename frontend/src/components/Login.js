@@ -33,13 +33,16 @@ const Login = () => {
           <Typography variant="h5" fontWeight="bold" gutterBottom>
             Login
           </Typography>
-
+      <form onSubmit={handleSubmit}>
           <TextField
             fullWidth
             label="Email Address"
             variant="outlined"
             margin="normal"
             type="email"
+            onChange={(e)=> setEmail(e.target.value)}
+            placeholder="email"
+            required="true"
           />
           <TextField
             fullWidth
@@ -47,6 +50,8 @@ const Login = () => {
             variant="outlined"
             margin="normal"
             type="password"
+            onChange={(e)=> setPassword(e.target.value)}
+            required="true"
           />
 
           <Button
@@ -54,9 +59,12 @@ const Login = () => {
             variant="contained"
             color="primary"
             sx={{ mt: 2, borderRadius: "8px", fontWeight: "bold" }}
+            type="submit"
           >
             Login
           </Button>
+
+          </form>
 
           <Grid container justifyContent="space-between" mt={2}>
             <Typography variant="body2" color="primary" sx={{ cursor: "pointer" }}>
