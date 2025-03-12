@@ -9,7 +9,7 @@ const router =express.Router();
 
 router.post("/register", async (req,res)=>{
 
-    const {fullname,email,password}=req.body;
+    const {fullName,email,password}=req.body;
 
     const userExist=await User.findOne({email});
 
@@ -17,7 +17,7 @@ router.post("/register", async (req,res)=>{
 
     const hashedpassword=await bcrypt.hash(password,10);
 
-    const user =new User ({fullname, email, password:hashedpassword});
+    const user =new User ({fullName, email, password:hashedpassword});
 
     await user.save();
 

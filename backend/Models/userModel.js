@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
 
-    fullname: {
+    fullName: {
         type: String,
         required: true,
         minlength: [4, 'full name should be atleast 4 character long']

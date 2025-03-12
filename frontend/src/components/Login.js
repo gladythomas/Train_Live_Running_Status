@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import {
   Container,
   Card,
@@ -22,7 +24,25 @@ const StyledCard = styled(Card)({
   
 });
 
-const Login = () => {
+
+
+const Login = () => { 
+  
+  const [email,setEmail]=useState('');
+  const [password,setPassword]=useState('');
+
+  const handleSubmit= async(e)=>{
+    e.preventDefault();
+    try {
+      const res=await axios.post('http://localhost:5000/api/users/login', {email, password});
+
+      localStorage.setItem('token', res.data.token);
+      window.location.href='/dashboard';
+    } catch (error) {
+      alert("Login Failed");
+    }
+  }
+
   return (
     <Container maxWidth="sm" sx={{ minHeight: "100vh", display: "flex", alignItems: "center" }}>
       <StyledCard>
@@ -70,7 +90,11 @@ const Login = () => {
             <Typography variant="body2" color="primary" sx={{ cursor: "pointer" }}>
               Forgot Password?
             </Typography>
-            <Typography variant="body2" color="primary" sx={{ cursor: "pointer" }}>
+            <Typography variant="body2" color="primary" sx={{ cursor: "pointer" }}
+            component={Link}
+            to='/register'
+            
+            >
               Sign Up
             </Typography>
           </Grid>
