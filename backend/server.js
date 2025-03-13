@@ -15,6 +15,10 @@ app.use(cors({origin:'http://localhost:3000'}));
 const userRoutes=require('./Routes/userRoutes');
 app.use("/api/users",userRoutes);
 
+const trainRoutes=require('./Routes/trainRoutes');
+
+app.use('/api/trains', trainRoutes);
+
 const port = process.env.PORT || 5000;
 
 app.get('/', (req, res) => {
